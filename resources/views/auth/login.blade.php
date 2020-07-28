@@ -74,6 +74,13 @@
                             </div>
                             <div class="m-0">
                                 <span class="additional-link">
+                                    Username: admin@admin.com
+                                    <br>
+                                    Password: 123456
+                                </span>
+                            </div>
+                            <div class="m-0">
+                                <span class="additional-link">
                                     No account?
                                     <a href="{{ url('register') }}">
                                         Signup Now
