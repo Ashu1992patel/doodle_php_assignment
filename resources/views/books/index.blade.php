@@ -61,12 +61,12 @@
                 <div class="card-body">
                     <div class="row gutters">
 
-                        {!! $books->links() !!}
+                        {{-- {!! $books->links() !!} --}}
 
                         @if(count($books))
                         @foreach ($books as $book)
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 flip-card" style="margin-bottom: 10px;">
-                            <div class="card text-center flip-card-inner" style="height: 234px;">
+                            <div class="card text-center flip-card-inner" style="height: 250px;">
                                 <div class="flip-card-front" style="background: #00b89440;">
                                     <div class="card-header chakri-front">
                                         <div class="card-title">
@@ -113,17 +113,15 @@
                                             </strong>
                                         </lable>
 
-                                        <a class="badge badge-sm badge-primary" href="{{ route('books.show',$book->id) }}">
-                                            Show
-                                        </a>
-
-                                        @can('subscribe-create')
-
+                                        @if(auth()->user()->roles[0]->name == 'user')
                                         @php
                                             $subscription =  App\Subscription::where(['book_id' => $book->id, 'user_id' => auth()->user()->id])->first();
                                         @endphp
 
                                         @if(isset($subscription))
+                                        <a class="badge badge-sm badge-primary" href="{{ route('books.show',$book->id) }}">
+                                            Show
+                                        </a>
                                         
                                         <a class="badge badge-sm badge-danger" href="javascript:void(0);"
                                         onclick='unsubscription_method("{{ $book->id }}");'>
@@ -139,6 +137,7 @@
                                             </button>
                                         </form>
                                         @else
+
                                         <a class="badge badge-sm badge-success" href="javascript:void(0);"
                                         onclick='subscription_method("{{ $book->id }}");'>
                                             Subscribe
@@ -155,7 +154,12 @@
 
                                         @endif
 
-                                        @endcan
+                                        @else
+                                        <a class="badge badge-sm badge-primary" href="{{ route('books.show',$book->id) }}">
+                                            Show
+                                        </a>
+                                        @endif
+
 
                                         @can('book-edit')
                                         <a class="badge badge-sm badge-info" href="{{ route('books.edit',$book->id) }}">
@@ -187,6 +191,14 @@
                         @endforeach
                         @endif
 
+                        
+                    </div>
+                </div>
+            
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 offset-3">
                         {!! $books->links() !!}
                     </div>
                 </div>

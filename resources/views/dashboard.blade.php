@@ -30,6 +30,7 @@
             </center>
         </div>
     </div>
+    @if (!auth()->user()->roles[0]->name == 'user') 
     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
         <div class="card top-bdr bdr-yellow">
             <center>
@@ -43,6 +44,7 @@
                 </div>
             </center>
         </div>
-    </div>    
+    </div>   
+    @endif 
 </div>
 @endsection

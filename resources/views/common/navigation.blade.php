@@ -24,12 +24,16 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="formsDropdown">
                     <li>
-                        <a class="dropdown-item" href="{{ url('books/create') }}">Add Book</a>
+                        @can('book-create')
+                        <a class="dropdown-item" href="{{ url('import_books/create') }}">Import Books</a>
+                        <a class="dropdown-item" href="{{ url('books/create') }}">Add Book</a>                        
+                        @endcan
                         <a class="dropdown-item" href="{{ url('books') }}">All Books</a>
                     </li>
                 </ul>
             </li>
             
+            @can('user-list')
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle {{ (request()->is('users*')) ? 'active-page' : '' }}"
                     href="{{ url('users') }}" id="formsDropdown" role="button" data-toggle="dropdown"
@@ -44,11 +48,9 @@
                     <li>
                         <a class="dropdown-item" href="{{ url('roles') }}">Roles</a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ url('users') }}">Assign Permission</a>
-                    </li>
                 </ul>
             </li>
+            @endcan
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="{{ route('logout') }}" onclick="event.preventDefault();

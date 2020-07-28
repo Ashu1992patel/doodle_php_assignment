@@ -27,5 +27,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UserController');
 
     Route::resource('books', 'BookController');
+    Route::resource('import_books', 'ImportController');
     Route::resource('subscriptions/{book_id}/subscribe', 'SubscriptionController');
 });

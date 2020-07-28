@@ -26,9 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $books = Book::count();
-        $subscription = Subscription::count();
-        $users = User::count();
+        if (isset(auth()->user()->roles[0]->name) and (auth()->user()->roles[0]->name == 'user')) {
+            $books = Book::count();
+            $subscription = Subscription::where(['user_id' => auth()->user()->id])->count();
+            $users = User::count();
+        } else {
+            $books = Book::count();
+            $subscription = Subscription::count();
+            $users = User::count();
+        }
+
         $data = ['books' => $books, 'subscription' => $subscription, 'users' => $users];
         return view('dashboard', compact('data'));
         // return view('home');

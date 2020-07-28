@@ -12,7 +12,9 @@
                
                 <li class="dropdown">
                     <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-                        <span class="user-name">Ashish Patel</span>
+                        <span class="user-name">
+                            {{ auth()->user()->name }}
+                        </span>
                         <span class="avatar">
                             {{-- AP --}}
                             <img src="{{ url('assets/img/user.jpg') }}" alt="Ashish Patel" style="max-height: 50px;border-radius: 50%" />
@@ -25,7 +27,9 @@
                                 <div class="header-user">
                                     <img src="{{ url('assets/img/user.jpg') }}" alt="Ashish Patel" />
                                 </div>
-                                <h5>Ashish Patel</h5>
+                                <h5>
+                                    {{ auth()->user()->name }}
+                                </h5>
                                 <p>Sr. Software Developer</p>
                             </div>
                             {{-- <a href="#"><i class="icon-user1"></i> My Profile</a> --}}
